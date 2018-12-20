@@ -12,5 +12,6 @@ Jinja2==2.10
 jinja2-time==0.2.0
 MarkupSafe==1.1.0
 poyo==0.4.1
+regex==2018.11.22
 Werkzeug==0.14.1
 whichcraft==0.4.1

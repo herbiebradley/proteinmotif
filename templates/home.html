@@ -6,11 +6,11 @@
     <p class="lead">Enter a UniProt accession number to search the protein for the amyloid motif.</p>
   </div>
 </div>
-<form class="needs-validation" novalidate>
+<form method="POST" action="/" class="needs-validation" novalidate>
   <div class="row justify-content-md-center">
     <div class="col-md-4">
       <label for="uniprot">UniProt Accession Number:</label>
-      <input type="text" class="form-control" id="uniprot" aria-describedby="uniprotHelp" placeholder="P10636" required>
+      <input type="text" name="uniprot" class="form-control" id="uniprot" aria-describedby="uniprotHelp" placeholder="P10636" required>
       <div class="invalid-feedback"> Please enter a valid accession number.</div>
     </div>
     <div class="col-md-4">
@@ -38,4 +38,10 @@
   }, false);
 })();
 </script>
+<!-- Display motif search results -->
+{% if results %}
+  {% for value in results %}
+      {{ value }}
+  {% endfor %}
+{% endif %}
 {% endblock content %}

@@ -1,14 +1,19 @@
-# import the Flask class from the flask module
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
+
+from motif_search import match_list_from_uniprot
 
 # create the application object
 app = Flask(__name__)
 
 # use decorators to link the function to a url
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    results = None
+    if request.method == 'POST':
+        input = request.form["uniprot"]
+        results = match_list_from_uniprot(input)
+
+    return render_template('home.html', results=results)
 
 @app.route("/help")
 def help():
