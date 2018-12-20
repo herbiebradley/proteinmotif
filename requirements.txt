@@ -1,0 +1,15 @@
+arrow==0.12.1
+binaryornot==0.4.4
+certifi==2018.11.29
+Click==7.0
+cookiecutter==1.6.0
+Flask==1.0.2
+future==0.16.0
+gunicorn==19.9.0
+itsdangerous==1.1.0
+Jinja2==2.10
+jinja2-time==0.2.0
+MarkupSafe==1.1.0
+poyo==0.4.1
+Werkzeug==0.14.1
+whichcraft==0.4.1
