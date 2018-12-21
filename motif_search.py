@@ -17,18 +17,22 @@ def get_matches(protein_string):
     # Create match list of the repeating form [match, start position, end position, ... ]:
     match_list = []
     for match in matches:
-        match_list.append(match.group())
         # Get match positions, convert to Bioinformatics counting:
-        match_list.append(match.start() + 1)
-        match_list.append(match.end() + 1)
-    return match_list
+        match_start = match.start() + 1
+        match_end = match.end() + 1
+        # Create list of lists for matches:
+        match_list.append([match.group(), match_start, match_end])
+    # Enumerate list of lists so we can get indexes in table:
+    return enumerate(match_list)
 
 def match_list_from_uniprot(accession_code):
+    # Validation check for valid UniProt accession code:
+    results, error = None, None
     try:
         with ExPASy.get_sprot_raw(accession_code) as handle:
             record = SwissProt.read(handle)
         protein_string = record.sequence
-        return get_matches(protein_string)
+        results = get_matches(protein_string)
     except urllib.error.HTTPError:
         error = "No protein record found, please enter valid accession code."
-        return error
+    return results, error

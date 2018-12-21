@@ -10,8 +10,9 @@
   <div class="row justify-content-md-center">
     <div class="col-md-4">
       <label for="uniprot">UniProt Accession Number:</label>
-      <input type="text" name="uniprot" class="form-control" id="uniprot" aria-describedby="uniprotHelp" placeholder="P10636" required>
-      <div class="invalid-feedback"> Please enter a valid accession number.</div>
+      <!-- "Required" tag links to JS below, validates for no input in text box: -->
+      <input type="text" name="uniprot" class="form-control" id="uniprot" placeholder="P04156" required>
+      <div class="invalid-feedback"> Please enter a valid UniProt accession number.</div>
     </div>
     <div class="col-md-4">
       <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Submit</button>
@@ -19,7 +20,8 @@
   </div>
 </form>
 <script>
-// Example JavaScript for disabling form submissions if there are invalid fields
+// JavaScript for disabling form submissions if there are invalid fields
+// This triggers only if nothing is in the text box when the submit button is pressed
 (function() {
   'use strict';
   window.addEventListener('load', function() {
@@ -38,10 +40,35 @@
   }, false);
 })();
 </script>
-<!-- Display motif search results -->
 {% if results %}
-  {% for value in results %}
-      {{ value }}
-  {% endfor %}
+<div class="row justify-content-md-center">
+  <div class="py-3 text-center">
+    <h2>Table of results for <a href={{ prot_url }}>{{ ac_code }}</a>:</h2>
+  </div>
+</div>
+<!-- Display motif search results in table -->
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Match Sequence</th>
+        <th scope="col">Match Start</th>
+        <th scope="col">Match End</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- Loop over results, displaying each match as a table row -->
+    {% for index, match in results %}
+      <tr>
+        <th scope="row">{{ index + 1 }}</th>
+        <td>{{ match[0] }}</td>
+        <td>{{ match[1] }}</td>
+        <td>{{ match[2] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 {% endblock content %}
