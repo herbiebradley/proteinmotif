@@ -41,9 +41,9 @@
 })();
 </script>
 {% if results %}
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center mt-5">
   <div class="py-3 text-center">
-    <h2>Table of results for <a href={{ prot_url }}>{{ ac_code }}</a>:</h2>
+    <h3>Matches for the protein <a href={{ prot_url }}>{{ ac_code }}</a></h3>
   </div>
 </div>
 <!-- Display motif search results in table -->
@@ -69,6 +69,12 @@
     {% endfor %}
     </tbody>
   </table>
+</div>
+<div class="row justify-content-md-center">
+  <div class="col-md-4">
+    <!-- Button to download results.csv file -->
+    <a href="/return-file/" target="results.csv"><button type="download" class="btn btn-primary btn-lg btn-block">Download as .csv file</button></a>
+  </div>
 </div>
 {% endif %}
 {% endblock content %}
