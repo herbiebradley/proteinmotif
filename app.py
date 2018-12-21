@@ -17,7 +17,7 @@ def home():
         # Set uniprot url of protein:
         prot_url = "https://uniprot.org/uniprot/" + ac_code
     else:
-        results, error, accession_code, prot_url = None, None, None, None
+        results, error, ac_code, prot_url = None, None, None, None
     # Render home.html, passing in the results, validation error, accession code, and uniprot url:
     return render_template('home.html', results=results, error=error, ac_code=ac_code, prot_url=prot_url)
 
