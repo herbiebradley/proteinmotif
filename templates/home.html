@@ -12,7 +12,7 @@
       <label for="uniprot">UniProt Accession Number:</label>
       <!-- "Required" tag links to JS below, validates for no input in text box: -->
       <input type="text" name="uniprot" class="form-control" id="uniprot" placeholder="P04156" required>
-      <div class="invalid-feedback"> Please enter a valid UniProt accession number.</div>
+      <div class="invalid-feedback">Please enter a valid UniProt accession number.</div>
     </div>
     <div class="col-md-4">
       <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Submit</button>
@@ -40,13 +40,24 @@
   }, false);
 })();
 </script>
+<!-- If accession code is invalid, display error flash message -->
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    <div class="row justify-content-md-center mt-5">
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 {% if results %}
+<!-- Display motif search results in table -->
 <div class="row justify-content-md-center mt-5">
   <div class="py-3 text-center">
+    <!-- Link to uniprot url for protein -->
     <h3>Matches for the protein <a href={{ prot_url }}>{{ ac_code }}</a></h3>
   </div>
 </div>
-<!-- Display motif search results in table -->
 <div class="table-responsive">
   <table class="table">
     <thead class="thead-dark">
@@ -58,7 +69,7 @@
       </tr>
     </thead>
     <tbody>
-    <!-- Loop over results, displaying each match as a table row -->
+    <!-- Loop over enumerated results, displaying each match as a table row -->
     {% for index, match in results %}
       <tr>
         <th scope="row">{{ index + 1 }}</th>

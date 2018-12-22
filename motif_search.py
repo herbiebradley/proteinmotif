@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import urllib
 import csv
 import regex as re # Third party regex module
@@ -26,12 +24,14 @@ def get_matches(protein_string):
     return match_list
 
 def match_list_from_uniprot(accession_code):
-    results, error = None, None
     # Validation check for valid UniProt accession code:
     try:
+        # Query SwissProt with the accession code:
         with ExPASy.get_sprot_raw(accession_code) as handle:
             record = SwissProt.read(handle)
+        # Get the raw protein sequence from the SwissProt record:
         protein_string = record.sequence
+        # Get list of lists of matches:
         match_list = get_matches(protein_string)
         # Generate CSV file for download:
         generate_csv(match_list)
@@ -39,8 +39,8 @@ def match_list_from_uniprot(accession_code):
         results = enumerate(match_list)
     # Exception is thrown if accession_code is not in SwissProt database:
     except urllib.error.HTTPError:
-        error = "No protein record found, please enter valid accession code."
-    return results, error
+        results = None
+    return results
 
 def generate_csv(match_list):
     filename = 'results.csv'
