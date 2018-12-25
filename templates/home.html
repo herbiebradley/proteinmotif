@@ -2,10 +2,11 @@
 {% block content %}
 <div class="row justify-content-md-center">
   <div class="py-3 text-center">
-    <h2>Protein Amyloid Search</h2>
-    <p class="lead">Enter a UniProt accession number to search the protein for the amyloid motif.</p>
+    <h2>Protein Amyloid Motif Search</h2>
+    <p class="lead">Enter a UniProt accession number to search the protein for the amyloid motif pattern.</p>
   </div>
 </div>
+<!-- Form with text field and submit button, linked to POST method in app.py -->
 <form method="POST" action="/" class="needs-validation" novalidate>
   <div class="row justify-content-md-center">
     <div class="col-md-4">
@@ -72,9 +73,13 @@
     <!-- Loop over enumerated results, displaying each match as a table row -->
     {% for index, match in results %}
       <tr>
+        <!-- index + 1 is there to start counting from 1 -->
         <th scope="row">{{ index + 1 }}</th>
+        <!-- Match sequence -->
         <td>{{ match[0] }}</td>
+        <!-- Match start -->
         <td>{{ match[1] }}</td>
+        <!-- Match end -->
         <td>{{ match[2] }}</td>
       </tr>
     {% endfor %}

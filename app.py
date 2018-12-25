@@ -11,6 +11,7 @@ app.config['SECRET_KEY'] = os.urandom(16)
 # Use decorators to link the function to a url:
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    """Home page function, takes in form input and renders home.html"""
     # Post method is called if submit button is pressed.
     if request.method == 'POST':
         # Get the contents of the "uniprot" text field:
@@ -31,6 +32,8 @@ def home():
 # Route for downloading csv file:
 @app.route('/return-file/')
 def return_file():
+    """This page exists just to download files, it will open, downlaod file, and
+    immediately autoclose when the download button is pressed."""
     try:
         # This gets results.csv from the home directory and downloads it:
         return send_file('results.csv', as_attachment=True)
