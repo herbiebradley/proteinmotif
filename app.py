@@ -20,7 +20,7 @@ def home():
         results = match_list_from_uniprot(ac_code)
         # If ac_code is invalid, results will be None:
         if results is None:
-            flash("No protein record found, please enter valid accession code.", "danger")
+            flash("No protein record found, please enter valid accession number.", "danger")
         # Set uniprot url of protein:
         prot_url = "https://uniprot.org/uniprot/" + ac_code
     else:
@@ -32,7 +32,7 @@ def home():
 # Route for downloading csv file:
 @app.route('/return-file/')
 def return_file():
-    """This page exists just to download files, it will open, downlaod file, and
+    """This page exists just to download files, it will open, download file, and
     immediately autoclose when the download button is pressed."""
     try:
         # This gets results.csv from the home directory and downloads it:

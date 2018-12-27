@@ -33,6 +33,20 @@ def _get_matches(protein_string):
         match_list.append([match.group(), match_start, match_end])
     return match_list
 
+def _generate_csv(match_list):
+    """Generates a .csv file from the amyloid pattern matches. The file is stored
+    in the base project directory as 'results.csv'. This function is intended to
+    be module-level private.
+
+    Args:
+        match_list (List): The list of lists containing the matches.
+    """
+    filename = 'results.csv'
+    with open(filename, 'w', newline='') as outcsv:
+        writer = csv.writer(outcsv, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+        writer.writerow(['Match Sequence', 'Match Start', 'Match End']) # First row
+        writer.writerows(match_list) # Write each list in match_list as separate row
+
 def match_list_from_uniprot(accession_code):
     """This function takes in a UniProt accession number from the form and returns
     None if the number is invalid, or an enumerate object containing all matches
@@ -65,17 +79,3 @@ def match_list_from_uniprot(accession_code):
     except urllib.error.HTTPError:
         results = None
     return results
-
-def _generate_csv(match_list):
-    """Generates a .csv file from the amyloid pattern matches. The file is stored
-    in the base project directory as 'results.csv'. This function is intended to
-    be module-level private.
-
-    Args:
-        match_list (List): The list of lists containing the matches.
-    """
-    filename = 'results.csv'
-    with open(filename, 'w', newline='') as outcsv:
-        writer = csv.writer(outcsv, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-        writer.writerow(['Match Sequence', 'Match Start', 'Match End']) # First row
-        writer.writerows(match_list) # Write each list in match_list as separate row

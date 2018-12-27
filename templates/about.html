@@ -1,4 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<div class="row justify-content-md-center">
+  <div class="py-3 text-center">
+    <h1>About</h1>
+  </div>
+  <div class="py-3 text-left">
+      <p class="lead">Amyloidosis is a group of diseases characterised by build up of amyloids – aggregates of proteins. These aggregates are caused by misfolded proteins which form beta sheet structures that accumulate together into long fibres – the amyloids (Paz and Serrano, 2004). Amyloidosis encompasses a wide range of diseases, such as rheumatoid arthritis and type II diabetes, but particularly neurodegenerative diseases such as Alzheimer’s and Parkinson’s disease.</p>
+      <p class='lead'>One active area of research is the link between a protein sequence and the protein’s aggregation propensity, and various tools have been created to identify the parts of a protein sequence which are particularly prone to aggregation (Conchillo-Solé et al., 2007; Ahmed and Kajava, 2013).</p>
+      <p class='lead'>Paz and Serrano (2004) identified the following six-residue PROSITE pattern indicating an amyloid-prone fragment in neutral pH:</p>
+  </div>
+  <div class="py-3 text-center">
+    <h5>{P}-{PKRHW}-[VLSWFNQ]-[ILTYWFN]-[FIY]-{PKRH}</h5>
+  </div>
+  <div class="py-3 text-left">
+    <p class='lead'>Protein Amyloid Motif Search (PAMS) is a web-based tool designed to search a protein sequence for matches of this amyloid motif pattern.</p>
+  </div>
+  <div class="py-3 text-center">
+    <h3>References</h3>
+  </div>
+  <div class="py-3 text-left">
+    <p class='lead'>Ahmed, A.B. and Kajava, A.V., 2013. Breaking the amyloidogenicity code: methods to predict amyloids from amino acid sequence. FEBS letters, 587(8), pp.1089–1095. <a href="https://doi.org/10.1016/j.febslet.2012.12.006">https://doi.org/10.1016/j.febslet.2012.12.006</a></p>
+    <p class='lead'>Conchillo-Solé, O., de Groot, N.S., Avilés, F.X., Vendrell, J., Daura, X. and Ventura, S., 2007. AGGRESCAN: a server for the prediction and evaluation of ‘hot spots’ of aggregation in polypeptides. BMC bioinformatics, 8, p.65. <a href="https://doi.org/10.1186/1471-2105-8-65">https://doi.org/10.1186/1471-2105-8-65</a></p>
+    <p class='lead'>Paz, M.L. de la and Serrano, L., 2004. Sequence determinants of amyloid fibril formation. Proceedings of the National Academy of Sciences, 101(1), pp.87–92.
+        <a href="https://doi.org/10.1073/pnas.2634884100">https://doi.org/10.1073/pnas.2634884100</a></p>
+  </div>
+</div>
 {% endblock content %}
